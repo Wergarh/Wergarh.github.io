@@ -1,0 +1,82 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta "charset=UTF-8" />
+<title>Cайт студента GeekBrains</title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	var count = 0;
+	var u_answer = 0;
+	var val = Math.floor(Math.random() * 100);
+		
+	function Guess() {
+		u_answer = document.getElementById('answer').value;
+		count++;
+			if (u_answer == val && u_answer >= 1 && u_answer <= 100) {
+				alert('Вы угадали!' + '\n' + 'Загаданное число: ' + val + '\n' + 'Количество попыток: ' + count);
+				count = 0;
+				u_answer = 0;
+				val = Math.floor(Math.random() * 100);
+			} else if (u_answer < 1 || u_answer > 100) {
+				alert ('Ошибка: введите число от 1 до 100!');
+				count--;
+			} else if (u_answer > val) {
+				alert ('Слишком большое число!');
+			} else if (u_answer < val) {
+				alert ('Слишком маленькое число!');
+			}
+	}
+		
+</script>
+
+</head>
+<body>
+
+<div id="tooplate_body_wrapper" />
+<div id="tooplate_wrapper" />
+<div id="tooplate_header">
+	<div id="site_title">
+		<h1><a href="http://geekbrains.ru">GeekBrains</a></h1>
+	</div>
+	<div id="tooplate_menu">
+		<ul>
+			<li><a href="index.html">Главная</a></li>
+			<li><a href="guess.html">Угадайка</a></li>
+			<li><a href="puzzle.html">Загадки</a></li>
+			<li><a href="blackjack.html">BlackJack</a></li>
+		</ul>    	
+	</div>
+</div>
+
+<div id="content_box">
+		
+	<div id="content_title">
+		<h2>Игра "Угадайка"</h2>
+	</div>
+	<div id="content">
+		<div id="image_wrapper">
+			<img src="images/numbers.jpg"></img>
+		</div>
+	
+		<p>В игре "Угадайка" компьютер закадывает число в диапазоне от 1 до 100.
+		   Ваша задача угадать это число. Выбрать тип игры:</p>    			
+
+		<p><input type="button" value="На одного" onClick="location.href='guess_single.html'"/>
+		<input type="button" value="На двоих" onClick="location.href='guess_multiplayer.html'"/></p>
+				
+	</div>
+           
+    <div id="tooplate_footer">    
+        Copyright © 2016 <a href="https://vk.com/wergarh">Wergarh</a>
+    </div>
+    
+</div> <!-- end of warpper -->
+</body>
+	
+
+</script>
+
+</head>
+</html>

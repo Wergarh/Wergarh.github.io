@@ -1,0 +1,89 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta "charset=UTF-8" />
+<title>Cайт студента GeekBrains</title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	var count = 0;
+	var u_answer = 0;
+	var val = Math.floor(Math.random() * 100);
+		
+	function Guess() {
+		u_answer = document.getElementById('answer').value;
+		while(true) {
+			if(count <= 0)
+				u_answer = document.getElementById('answer').value;
+			if (u_answer == val && u_answer >= 1 && u_answer <= 100) {
+				count++;
+				alert('Вы угадали!' + '\n' + 'Загаданное число: ' + val + '\n' + 'Количество попыток: ' + count);
+				break;
+			} else if (u_answer < 1 || u_answer > 100) {
+				u_answer = parseInt(prompt('Ошибка: введите число от 1 до 100!'));
+			} else if (u_answer > val) {
+				count++;
+				u_answer = parseInt(prompt('Слишком большое число!'));
+			} else if (u_answer < val) {
+				count++;
+				u_answer = parseInt(prompt('Слишком маленькое число!'));
+			}
+		}
+		count = 0;
+		u_answer = 0;
+		val = Math.floor(Math.random() * 100);
+	}
+		
+</script>
+
+</head>
+<body>
+
+<div id="tooplate_body_wrapper" />
+<div id="tooplate_wrapper" />
+<div id="tooplate_header">
+	<div id="site_title">
+		<h1><a href="http://geekbrains.ru">GeekBrains</a></h1>
+	</div>
+	<div id="tooplate_menu">
+		<ul>
+			<li><a href="index.html">Главная</a></li>
+			<li><a href="guess.html">Угадайка</a></li>
+			<li><a href="puzzle.html">Загадки</a></li>
+			<li><a href="blackjack.html">BlackJack</a></li>
+		</ul>    	
+	</div>
+</div>
+
+<div id="content_box">
+		
+	<div id="content_title">
+		<h2>Игра "Угадайка"</h2>
+	</div>
+	<div id="content">
+		<div id="image_wrapper">
+			<img src="images/numbers.jpg"></img>
+		</div>
+
+		<p>Угадайте число от 1 до 100:</p>    			
+		<input type="text" id="answer" />
+		
+		</br></br>
+		
+		<input type="button" value="Ответить" onClick="Guess()"/>
+		
+	</div>
+           
+    <div id="tooplate_footer">    
+        Copyright © 2016 <a href="https://vk.com/wergarh">Wergarh</a>
+    </div>
+    
+</div> <!-- end of warpper -->
+</body>
+	
+
+</script>
+
+</head>
+</html>

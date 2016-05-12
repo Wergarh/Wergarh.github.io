@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta "charset=UTF-8" />
+<title>Cайт студента GeekBrains</title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	var count1 = 0;
+	var count2 = 0;
+	var u_answer1 = 0;
+	var u_answer2 = 0;
+	var firstPlayer = true;
+	var val = Math.floor(Math.random() * 100);
+	
+	function Guess() {
+		var val = Math.floor(Math.random() * 100);
+		while(true) {
+			if(firstPlayer) {
+				if(count1 <= 0)
+					u_answer1 = document.getElementById('answer').value;
+				if (u_answer1 == val && u_answer1 >= 1 && u_answer1 <= 100) {
+					count1++;
+					alert('Игрок 1 угадал!' + '\n' + 'Загаданное число: ' + val + '\n' + 'Количество попыток: ' + count1);
+					break;
+				} else if (u_answer1 < 1 || u_answer1 > 100) {
+					u_answer1 = parseInt(prompt('Ошибка: введите число от 1 до 100!\nХодит Игрок 1:'));
+				} else if (u_answer1 > val) {
+					count1++;
+					u_answer2 = parseInt(prompt('Слишком большое число!\nХодит Игрок 2:'));
+					firstPlayer = false;
+				} else if (u_answer1 < val) {
+					count1++;
+					u_answer2 = parseInt(prompt('Слишком маленькое число!\nХодит Игрок 2:'));
+					firstPlayer = false;
+				}
+			} else if(!firstPlayer) {
+				if (u_answer2 == val && u_answer2 >= 1 && u_answer2 <= 100) {
+					count2++;
+					alert('Игрок 2 угадал!' + '\n' + 'Загаданное число: ' + val + '\n' + 'Количество попыток: ' + count2);
+					break;
+				} else if (u_answer2 < 1 || u_answer2 > 100) {
+					u_answer2 = parseInt(prompt('Ошибка: введите число от 1 до 100!\nХодит Игрок 2:'));
+				} else if (u_answer2 > val) {
+					count2++;
+					u_answer1 = parseInt(prompt('Слишком большое число!\nХодит Игрок 1:'));
+					firstPlayer = true;
+				} else if (u_answer2 < val) {
+					count2++;
+					u_answer1 = parseInt(prompt('Слишком маленькое число!\nХодит Игрок 1:'));
+					firstPlayer = true;
+				}
+			} 
+		}
+		count1 = count2 = 0;
+		u_answer1 = u_answer2 = 0;
+		firstPlayer = true;
+	}
+		
+</script>
+
+</head>
+<body>
+
+<div id="tooplate_body_wrapper" />
+<div id="tooplate_wrapper" />
+<div id="tooplate_header">
+	<div id="site_title">
+		<h1><a href="http://geekbrains.ru">GeekBrains</a></h1>
+	</div>
+	<div id="tooplate_menu">
+		<ul>
+			<li><a href="index.html">Главная</a></li>
+			<li><a href="guess.html">Угадайка</a></li>
+			<li><a href="puzzle.html">Загадки</a></li>
+			<li><a href="blackjack.html">BlackJack</a></li>
+		</ul>    	
+	</div>
+</div>
+
+<div id="content_box">
+		
+	<div id="content_title">
+		<h2>Игра "Угадайка" на двоих</h2>
+	</div>
+	<div id="content">
+		<div id="image_wrapper">
+			<img src="images/numbers.jpg"></img>
+		</div>
+		
+		<p>Игра на двоих. Игроки ходят по очереди.</p>
+		
+		<p>Угадайте число от 1 до 100. Начинает "Игрок 1":</p>    			
+		<input type="text" id="answer" />
+		
+		</br></br>
+		
+		<input type="button" value="Ответить" onClick="Guess()"/>
+		
+	</div>
+           
+    <div id="tooplate_footer">    
+        Copyright © 2016 <a href="https://vk.com/wergarh">Wergarh</a>
+    </div>
+    
+</div> <!-- end of warpper -->
+</body>
+	
+
+</script>
+
+</head>
+</html>

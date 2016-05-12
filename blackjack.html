@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta "charset=UTF-8" />
+<title>Cайт студента GeekBrains</title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	function generateIntNum(min, max) { //генерация случайных целых чисел в заданном диапазоне
+		return (Math.floor(Math.random() * (max - min + 1) + min ));
+	}
+	
+	function getCard() {
+		var arr = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+		
+		return arr[generateIntNum(0, arr.length - 1)];
+	}
+	
+	function sum (arr) {
+		var score = 0;
+		for(var i = 0; i < arr.length; i++) {
+			if(arr[i] == 'J' || arr[i] == 'Q' || arr[i] == 'K') {
+				score += 10;
+			} else if(arr[i] == 'A' && ((score + 11) <= 21)) {
+				score += 11;
+			} else if(arr[i] == 'A' && ((score + 11) > 21)) {
+				score += 1;
+			} else {
+				score += parseInt(arr[i]);
+			}
+		}
+		return score;
+	}
+	
+	function play() {
+		var dealer = [];
+		var player = [];
+		var choise = 0;
+	
+		dealer.push(getCard());
+		player.push(getCard(), getCard());
+		
+		choise = parseInt(prompt('_-*Игра BlackJack*-_\n\nКарты дилера: ' + dealer.join(', ') + ' ('+ sum(dealer) + ' очков)' + '\nКарты игрока: ' + player.join(', ') + ' (' + sum(player) + ' очков)\n\nСдать еще одну карту?\nДа - Enter, Нет - 1'));
+		while (choise != 1 && sum(player) < 21) {
+			player.push(getCard());
+			choise = parseInt(prompt('Вы взяли карту!\n\nКарты дилера: ' + dealer.join(', ') + ' ('+ sum(dealer) + ' очков)' + '\nКарты игрока: ' + player.join(', ') + ' (' + sum(player) + ' очков)\n\nСдать еще одну карту?\nДа - Enter, Нет - 1'));
+		}
+		
+		while (sum(dealer) <= 16 && choise == 1 && sum(player) != 21) {
+			dealer.push(getCard());
+			alert('Дилер берет еще одну карту: ' + dealer[dealer.length - 1] + '\n\nКарты дилера: ' + dealer.join(', ') + ' ('+ sum(dealer) + ' очков)\nКарты игрока: ' + player.join(', ') + ' (' + sum(player) + ' очков)');
+		}
+		
+		if(sum(dealer) == 21 && (sum(player) < 21 || sum(player) > 21)) {
+			alert('Дилер выиграл: ' + sum(dealer));
+		} else if(sum(dealer) > 21 && sum(player) < 21) {
+			alert('У дилера перебор: ' + sum(dealer));
+		} else if(sum(player) == 21 && (sum(dealer) < 21 || sum(dealer) > 21)) {
+			alert('Игрок выиграл: ' + sum(player));
+		} else if(sum(player) > 21) {
+			alert('У Вас перебор: ' + sum(player));
+		} else if(sum(dealer) == sum(player)) {
+			alert('Ничья!\nДилер: ' + sum(dealer) + '\nИгрок: ' + sum(player));
+		} else if(sum(dealer) > sum(player)) {
+			alert('Дилер выиграл!\nДилер: ' + sum(dealer) + '\nИгрок: ' + sum(player));
+		} else {
+			alert('Игрок выиграл!\nИгрок: ' + sum(player) + '\nДилер: ' + sum(dealer));
+		}
+		
+		return 0;
+	}
+		
+</script>
+
+</head>
+<body>
+
+<div id="tooplate_body_wrapper" />
+<div id="tooplate_wrapper" />
+<div id="tooplate_header">
+	<div id="site_title">
+		<h1><a href="http://geekbrains.ru">GeekBrains</a></h1>
+	</div>
+	<div id="tooplate_menu">
+		<ul>
+			<li><a href="index.html">Главная</a></li>
+			<li><a href="guess.html">Угадайка</a></li>
+			<li><a href="puzzle.html">Загадки</a></li>
+			<li><a href="blackjack.html">BlackJack</a></li>
+		</ul>    	
+	</div>
+</div>
+
+<div id="content_box">
+		
+	<div id="content_title">
+		<h2>Игра "BlackJack"</h2>
+	</div>
+	<div id="content">
+		<div id="image_wrapper">
+			<img src="images/blackjack.jpg"></img>
+		</div>
+		
+		<h3>Правила:</h3>  
+
+		<p>Цель игры заключается в том, чтобы набрать двадцать одно очко или же количество очков, 
+		   максимально приближенное к этой сумме, но не больше ее. Если игрок набирает больше 
+		   двадцати одного очка, он сразу же проигрывает. В остальных случаях ценность его карт 
+		   сравнивается с ценностью карт дилера и определяется победитель.<p/>
+		   
+		<p>Дилер раздает карты, одну себе и две игроку. Если игрок набирает сумму очков, 
+		   превышающую 21, то его ставка проигрывает. Игрок, набравший сумму очков большую, 
+		   чем дилер, выигрывает. Игрок, набравший сумму очков меньшую, чем дилер, проигрывает. 
+		   Если сумма очков игрока равна сумме очков дилера, то объявляется ничья.</p>
+		   
+		<p>Дилер набирает карты последним, при этом он обязан брать карту, если у него 16 очков 
+		   или меньше, и остановиться, если сумма очков 17 или больше. Тузы считаются как 1 или 11, 
+		   «картинки» (валет, дама, король) – по 10 очков, остальные карты – соответствуют своему 
+		   номиналу.</p>
+
+		<input type="button" value="Играть" onClick="play()"/>
+	</div>
+           
+    <div id="tooplate_footer">    
+        Copyright © 2016 <a href="https://vk.com/wergarh">Wergarh</a>
+    </div>
+    
+</div> <!-- end of warpper -->
+</body>
+	
+
+</script>
+
+</head>
+</html>

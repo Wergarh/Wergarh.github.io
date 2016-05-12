@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta "charset=UTF-8" />
+<title>Cайт студента GeekBrains</title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	function Puzzle() {
+		const answer1 = 'Зима';
+		const answer2 = 'Совы';
+		var u_answer1 = '';
+		var u_answer2 = '';
+		var count_ans = 0;
+		
+		u_answer1 = document.getElementById('puzzle1').value;
+		if (answer1.toLowerCase().substr(0,3) == u_answer1.toLowerCase().substr(0,3)) {
+			count_ans++;
+		}
+
+		u_answer2 = document.getElementById('puzzle2').value;
+		if (answer2.toLowerCase().substr(0,3) == u_answer2.toLowerCase().substr(0,3)) {
+			count_ans++;
+		}
+			
+		if(count_ans <= 0) {
+			alert('Вы не разгадали ни одну загадку');
+		} else {
+			alert('Поздравляю! Количество правильных ответов: ' + count_ans);
+		}
+	}
+</script>
+
+</head>
+<body>
+
+<div id="tooplate_body_wrapper" />
+<div id="tooplate_wrapper" />
+<div id="tooplate_header">
+	<div id="site_title">
+		<h1><a href="http://geekbrains.ru">GeekBrains</a></h1>
+	</div>
+	<div id="tooplate_menu">
+		<ul>
+			<li><a href="index.html">Главная</a></li>
+			<li><a href="guess.html">Угадайка</a></li>
+			<li><a href="puzzle.html">Загадки</a></li>
+			<li><a href="blackjack.html">BlackJack</a></li>
+		</ul>    	
+	</div>
+</div>
+
+<div id="content_box">
+		
+	<div id="content_title">
+		<h2>Игра "Загадки"</h2>
+	</div>
+	<div id="content">
+		<div id="image_wrapper">
+			<img src="images/question.jpg"></img>
+		</div>
+	
+		<h3>Загадка №1</h3>  
+
+		<p>Кто поляны белит белым</br>
+		   И на стенах пишет мелом,</br>
+		   Шьет пуховые перины,</br>
+		   Разукрасил все витрины?</br><p/>
+		<input type="text" id="puzzle1" />
+		
+		</br></br>
+		
+		<h3>Загадка №2</h3>  
+
+		<p>И в лесу, заметьте, дети,</br>
+		   Есть ночные сторожа.</br>
+		   Сторожей боятся этих</br>
+		   Мыши, прячутся, дрожа!</br>
+		   Очень уж суровы</br>
+		   Филины и ...</br><p/>
+		<input type="text" id="puzzle2" />
+
+		</br></br>
+
+		<input type="button" value="Ответить" onClick="Puzzle()"/>
+	</div>
+           
+    <div id="tooplate_footer">    
+        Copyright © 2016 <a href="https://vk.com/wergarh">Wergarh</a>
+    </div>
+    
+</div> <!-- end of warpper -->
+</body>
+	
+
+</script>
+
+</head>
+</html>
